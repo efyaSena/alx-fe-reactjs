@@ -1,6 +1,8 @@
 
 import React from 'react';
-import useRecipeStore from '../stores/useRecipeStore';
+
+import useRecipeStore from './recipeStore';
+
 import { useNavigate } from 'react-router-dom';
 
 const RecipeDetail = ({ recipeId }) => {
