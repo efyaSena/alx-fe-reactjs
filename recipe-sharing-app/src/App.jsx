@@ -1,27 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import React from 'react';
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
-import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar';
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <div>
-        <AddRecipeForm />
-        <Routes>
-          <Route path="/" element={<RecipeList />} />
-          <Route path="/recipe/:id" element={<RecipeDetailsWrapper />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="p-6 max-w-xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Recipe Sharing App</h1>
+      <AddRecipeForm />
+      <SearchBar />
+      <RecipeList />
+    </div>
   );
-}
-
-// Helper to get recipeId from URL
-import { useParams } from 'react-router-dom';
-const RecipeDetailsWrapper = () => {
-  const { id } = useParams();
-  return <RecipeDetails recipeId={parseInt(id)} />;
 };
 
 export default App;

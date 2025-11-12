@@ -1,16 +1,17 @@
 
 import React from 'react';
-import useRecipeStore from './recipeStore';
-
+import useRecipeStore from '../stores/useRecipeStore';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore(state => state.recipes);
+  const recipes = useRecipeStore(state => 
+    state.searchTerm ? state.filteredRecipes : state.recipes
+  );
 
   return (
     <div>
       {recipes.map(recipe => (
-        <div key={recipe.id}>
-          <h3>{recipe.title}</h3>
+        <div key={recipe.id} className="mb-4 p-2 border rounded">
+          <h3 className="font-semibold">{recipe.title}</h3>
           <p>{recipe.description}</p>
         </div>
       ))}
