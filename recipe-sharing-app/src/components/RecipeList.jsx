@@ -10,7 +10,7 @@ const RecipeList = () => {
     searchTerm: state.searchTerm,
   }));
 
-
+ 
   const displayedRecipes =
     searchTerm && filteredRecipes.length > 0 ? filteredRecipes : recipes;
 
@@ -22,7 +22,7 @@ const RecipeList = () => {
       ) : (
         displayedRecipes.map((recipe) => (
           <div key={recipe.id}>
-        
+           
             <h3>
               <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
             </h3>
