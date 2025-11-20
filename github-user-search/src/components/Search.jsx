@@ -1,55 +1,55 @@
 import React, { useState } from "react";
-import { fetchUserData } from "../services/githubService";
 
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!username) return;
-
-    setLoading(true);
-    setError("");
-    setUserData(null);
-
-    try {
-      const data = await fetchUserData(username);
-      if (data) setUserData(data);
-      else setError("Looks like we cant find the user"); // <-- ALX requires this exact text
-    } catch (err) {
-      setError("Looks like we cant find the user"); // <-- ALX requires this exact text
-    } finally {
-      setLoading(false);
-    }
+    // For Step 1, we’re not fetching yet
+    console.log({ username, location, minRepos });
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="max-w-xl mx-auto p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-3 mb-6"
+      >
         <input
           type="text"
-          placeholder="Enter GitHub username"
+          placeholder="Username"
+          className="border p-2 rounded"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <input
+          type="text"
+          placeholder="Location"
+          className="border p-2 rounded"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Minimum Repos"
+          className="border p-2 rounded"
+          value={minRepos}
+          onChange={(e) => setMinRepos(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+        >
+          Search
+        </button>
       </form>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-
-      {userData && (
-        <div>
-          <img src={userData.avatar_url} alt={userData.login} width="100" />
-          <h3>{userData.name || userData.login}</h3>
-          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
-            View Profile
-          </a>
-        </div>
-      )}
+      {/* Placeholder area for search results */}
+      <div className="text-center text-gray-500">
+        Enter search criteria and click Search
+      </div>
     </div>
   );
 };
