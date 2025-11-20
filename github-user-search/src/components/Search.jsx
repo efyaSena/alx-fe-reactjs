@@ -18,9 +18,9 @@ const Search = () => {
     try {
       const data = await fetchUserData(username);
       if (data) setUserData(data);
-      else setError("Looks like we can't find the user");
+      else setError("Looks like we cant find the user"); // <-- ALX requires this exact text
     } catch (err) {
-      setError("Looks like we can't find the user");
+      setError("Looks like we cant find the user"); // <-- ALX requires this exact text
     } finally {
       setLoading(false);
     }
