@@ -9,15 +9,18 @@ function Search() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
- const fetchUserData = async () => {
+const fetchUserData = async () => {
   setLoading(true);
-  const users = await fetchAdvancedUsers({
-    username,
-    location,
-    minRepos,
-  });
-  setResults(users);
-  setLoading(false);
+  try {
+    const users = await fetchAdvancedUsers({ username, location, minRepos });
+    setResults(users);
+  } catch (err) {
+    console.error(err);
+    setResults([]);
+    alert("Failed to fetch users. Please try again.");
+  } finally {
+    setLoading(false);
+  }
 };
 
   return (
