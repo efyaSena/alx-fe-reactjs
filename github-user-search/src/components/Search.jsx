@@ -9,17 +9,16 @@ function Search() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async () => {  
-    setLoading(true);
-   const users = await fetchAdvancedUsers({
-  username,
-  location,
-  minRepos,
-});
-
-    setResults(users);
-    setLoading(false);
-  };
+ const fetchUserData = async () => {
+  setLoading(true);
+  const users = await fetchAdvancedUsers({
+    username,
+    location,
+    minRepos,
+  });
+  setResults(users);
+  setLoading(false);
+};
 
   return (
     <div className="max-w-xl mx-auto p-4">
@@ -51,10 +50,10 @@ function Search() {
         />
 
         <button
-          onClick={handleSearch}
-          className="bg-blue-600 text-white py-2 px-4 rounded w-full"
-        >
-          Search
+          onClick={fetchUserData}  
+    className="bg-blue-600 text-white py-2 px-4 rounded w-full"
+  >
+    Search
         </button>
       </div>
 
