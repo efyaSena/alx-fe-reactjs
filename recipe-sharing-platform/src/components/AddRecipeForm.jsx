@@ -25,10 +25,8 @@ function AddRecipeForm() {
       return;
     }
 
-    // If valid, log the data (or send to API/store)
     console.log({ title, ingredients: ingredients.split(","), steps });
 
-    // Clear form
     setTitle("");
     setIngredients("");
     setSteps("");
@@ -37,8 +35,8 @@ function AddRecipeForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-lg mt-6">
-      <h2 className="text-2xl font-bold mb-4">Add New Recipe</h2>
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-lg mt-6 md:mt-10 md:p-8">
+      <h2 className="text-2xl font-bold mb-4 md:text-3xl">Add New Recipe</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
 
         {/* Title */}
@@ -84,12 +82,14 @@ function AddRecipeForm() {
         </div>
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-        >
-          Add Recipe
-        </button>
+        <div className="text-center md:text-right">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+          >
+            Add Recipe
+          </button>
+        </div>
       </form>
     </div>
   );
