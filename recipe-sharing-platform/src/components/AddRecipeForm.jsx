@@ -3,7 +3,7 @@ import { useState } from "react";
 function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
+  const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
@@ -14,8 +14,7 @@ function AddRecipeForm() {
     if (!title.trim()) newErrors.title = "Title is required";
     if (!ingredients.trim() || ingredients.split(",").length < 2)
       newErrors.ingredients = "Please provide at least 2 ingredients, separated by commas";
-    if (!instructions.trim())
-      newErrors.instructions = "Instructions are required";
+    if (!steps.trim()) newErrors.steps = "Steps are required";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -23,12 +22,12 @@ function AddRecipeForm() {
     }
 
     // If valid, log the data (or eventually send to API/store)
-    console.log({ title, ingredients: ingredients.split(","), instructions });
+    console.log({ title, ingredients: ingredients.split(","), steps });
     
     // Clear form
     setTitle("");
     setIngredients("");
-    setInstructions("");
+    setSteps("");
     setErrors({});
     alert("Recipe added successfully!");
   };
@@ -66,18 +65,18 @@ function AddRecipeForm() {
           {errors.ingredients && <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>}
         </div>
 
-        {/* Instructions */}
+        {/* Steps */}
         <div>
           <label className="block font-medium mb-1">Preparation Steps</label>
           <textarea
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
             rows={5}
             className={`w-full border rounded px-3 py-2 focus:outline-none focus:ring ${
-              errors.instructions ? "border-red-500" : "border-gray-300"
+              errors.steps ? "border-red-500" : "border-gray-300"
             }`}
           />
-          {errors.instructions && <p className="text-red-500 text-sm mt-1">{errors.instructions}</p>}
+          {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
         </div>
 
         {/* Submit Button */}
