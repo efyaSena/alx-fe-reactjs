@@ -1,13 +1,7 @@
-import BlogPost from "./pages/BlogPost.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Profile from "./components/Profile.jsx";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        {/* ...other routes */}
-        <Route path="/blog/:id" element={<BlogPost />} />
-        {/* ...catch-all route */}
-      </Routes>
-    </BrowserRouter>
-  );
-}
+
+<Route element={<ProtectedRoute />}>
+  <Route path="/profile" element={<Profile />} />
+</Route>
