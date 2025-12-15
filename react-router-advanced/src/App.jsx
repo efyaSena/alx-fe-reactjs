@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import Profile from "./pages/Profile.jsx";
+import Profile from "./components/Profile.jsx";
 import ProfileDetails from "./pages/ProfileDetails.jsx";
 import ProfileSettings from "./pages/ProfileSettings.jsx";
 import Post from "./pages/Post.jsx";
