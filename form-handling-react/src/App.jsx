@@ -1,3 +1,4 @@
-import FormikForm from "./components/FormikForm.jsx";
+import FormikForm from "./components/formikForm";
+
 function App() { return <FormikForm />; }
 export default App;
