@@ -1,31 +1,28 @@
+
 import { useState } from "react";
 
 export default function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.username || !formData.email || !formData.password) {
+  
+    if (!username || !email || !password) {
       setError("All fields are required");
       return;
     }
 
+   
+    console.log({ username, email, password });
+
     setError("");
-    console.log("Form submitted:", formData);
+    setUsername("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -34,29 +31,32 @@ export default function RegistrationForm() {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleChange}
-      />
+      <div>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}            // Controlled input
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
 
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-      />
+      <div>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}               // Controlled input
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-      />
+      <div>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}            // Controlled input
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
 
       <button type="submit">Register</button>
     </form>
