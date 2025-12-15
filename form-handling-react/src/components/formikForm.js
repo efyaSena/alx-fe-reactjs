@@ -4,59 +4,31 @@ import * as Yup from "yup";
 
 
 const validationSchema = Yup.object({
-  username: Yup.string()
-    .min(3, "Must be at least 3 characters")
-    .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Required"),
+  name: Yup.string().required("Name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
 });
 
-export default function FormikForm() {
-  const initialValues = {
-    username: "",
-    email: "",
-    password: "",
-  };
-
-  const handleSubmit = (values, { resetForm }) => {
-    console.log("Formik Submitted:", values);
-    resetForm();
-  };
+const FormikForm = () => {
 
   return (
-    <div>
-      <h2>Formik Registration Form</h2>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {() => (
-          <Form>
-            <div>
-              <label>Username:</label>
-              <Field type="text" name="username" />
-              <ErrorMessage name="username" component="div" className="error" />
-            </div>
+    <Formik
+      initialValues={{ name: "", email: "" }}
+      validationSchema={validationSchema}
+      onSubmit={(values) => console.log(values)}
+    >
+      {({ errors, touched }) => (
+        <Form>
+          <Field name="name" />
+          {errors.name && touched.name && <div>{errors.name}</div>}
 
-            <div>
-              <label>Email:</label>
-              <Field type="email" name="email" />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
+          <Field name="email" />
+          {errors.email && touched.email && <div>{errors.email}</div>}
 
-            <div>
-              <label>Password:</label>
-              <Field type="password" name="password" />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
-
-            <button type="submit">Register</button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+          <button type="submit">Submit</button>
+        </Form>
+      )}
+    </Formik>
   );
-}
+};
+
+export default FormikForm;
