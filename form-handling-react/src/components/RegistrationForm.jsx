@@ -26,35 +26,33 @@ function RegistrationForm() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log({ username, email, password });
-
-      setUsername("");
-      setEmail("");
-      setPassword("");
+      console.log(username, email, password);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        {errors.username && <p>{errors.username}</p>}
-      </div>
+      <input
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
 
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {errors.email && <p>{errors.email}</p>}
-      </div>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
-      <div>
-        <label>Passw
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <button type="submit">Register</button>
+    </form>
+  );
+}
+
+export default RegistrationForm;
